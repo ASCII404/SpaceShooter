@@ -1,30 +1,32 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <memory>
 class Ship
 {
 private:
-	sf::Texture ship_texture, ship_ammo;
-	sf::Sprite ship_sprite, ammo_sprite;
+	sf::Texture ship_texture;
+	sf::Sprite ship_sprite;
 
 public:
 	sf::Text error_msg;
 
 	Ship() {
-		if (!ship_texture.loadFromFile("sh.png") || !ship_ammo.loadFromFile("sh_ammo.png")) {}
+		if (!ship_texture.loadFromFile("sh.png")) {}
 		else {
 			ship_sprite.setTexture(ship_texture);
-			ammo_sprite.setTexture(ship_ammo);
 			ship_sprite.setPosition(sf::Vector2f(520, 490));
-			ammo_sprite.setPosition(sf::Vector2f(520, 390));
 		}
 	}
 
-	void set_ammo_sprite(sf::Texture texture) { ammo_sprite.setTexture(texture); }
-	sf::Sprite get_ammo_sprite() { return ammo_sprite; }
 
 	void set_ship_sprite(sf::Texture texture) { ship_sprite.setTexture(texture); }
 	sf::Sprite get_ship_sprite() { return ship_sprite; }
 
-	void ship_movement(sf::Time dt, sf::Clock clk);
+	void set_ship_position() { ship_sprite.setPosition(0, 0); }
+	sf::Vector2f get_ship_position() { return ship_sprite.getPosition(); }
+
+	void ship_movement();
+	void shoot();
+	~Ship(){}
 };
 

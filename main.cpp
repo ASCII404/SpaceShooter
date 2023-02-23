@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Ship.h"
+#include "ammo.h"
 
 //IMPLEMENT AMMO CLASS
 //IMPLEMENT MORE DIRECTIONS FOR SHIP
@@ -7,12 +8,18 @@
 int main()
 {
     Ship s;
-    sf::RenderWindow window;
-    window.create(sf::VideoMode(1280, 720), "SpaceShooter");
+    ammo a;
 
-    sf::Time dt;
-    sf::Clock clock;
+    sf::Texture texture_bg;
+    sf::Sprite sprite_bg;
+
+    texture_bg.loadFromFile("bg2.jpg");
+    sprite_bg.setTexture(texture_bg);
+    sf::RenderWindow window;
+   
+    window.create(sf::VideoMode(1280, 720), "SpaceShooter");
     window.setFramerateLimit(140);
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -25,11 +32,14 @@ int main()
 
 
         window.clear();
-        s.ship_movement(dt, clock);
+        window.draw(sprite_bg);
+        s.ship_movement();
         window.draw(s.get_ship_sprite());
-        window.draw(s.get_ammo_sprite());
+        window.draw(a.get_ammo_sprite());
+        a.bullet_movement();
         window.display();
     }
 
     return 0;
 }
+
