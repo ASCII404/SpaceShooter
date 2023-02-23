@@ -20,10 +20,12 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-            s.ship_movement(event, dt, clock);
+
         }
 
+
         window.clear();
+        s.ship_movement(dt, clock);
         window.draw(s.get_ship_sprite());
         window.draw(s.get_ammo_sprite());
         window.display();

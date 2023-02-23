@@ -25,6 +25,6 @@ public:
 	void set_ship_sprite(sf::Texture texture) { ship_sprite.setTexture(texture); }
 	sf::Sprite get_ship_sprite() { return ship_sprite; }
 
-	void ship_movement(sf::Event e, sf::Time dt, sf::Clock clk);
+	void ship_movement(sf::Time dt, sf::Clock clk);
 };
 
