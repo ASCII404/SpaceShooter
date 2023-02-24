@@ -10,60 +10,85 @@
 template <typename T>
 bool operator <(const sf::Vector2<T>& left, const sf::Vector2<T>& right)
 {
-    return (left.x < right.x) && (left.y < right.y);
+	return (left.x < right.x) && (left.y < right.y);
 }
 
 
 template <typename T>
 bool operator >(const sf::Vector2<T>& left, const sf::Vector2<T>& right)
 {
-    return (left.x > right.x) && (left.y > right.y);
+	return (left.x > right.x) && (left.y > right.y);
 }
 
-void Ship::ship_movement(){
+bool Ship::check_boundaries() {
 
-    sf::Vector2f acceleration{}, velocity_{};
-    float x{}, y{};
-    const float dAcc = 4.5f;
+	std::cout << get_ship_position().x << " " << get_ship_position().y << std::endl;
+	if (ship_sprite.getPosition().x < -55.f) return true;
+	if (ship_sprite.getPosition().x > 1080.f) return true;
+	if (ship_sprite.getPosition().y < -42.f) return true;
+	if (ship_sprite.getPosition().y > 513.f) return true;
+	
+	return false;
+}	
 
-    // set acceleration
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
-        acceleration.y -= dAcc;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-        acceleration.x -= dAcc;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
-        acceleration.y += dAcc;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-        acceleration.x += dAcc;
+void Ship::ship_movement() {
 
-    velocity_ += acceleration;
+	sf::Vector2f acceleration{}, velocity_{};
+	float x{}, y{};
+	const float dAcc = 4.5f;
 
-    // update position through velocity
-    x += velocity_.x;
-    y += velocity_.y;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::X))
+		ship_sprite.setPosition(520, 490);
+	// set acceleration
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+		acceleration.y -= dAcc;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+		acceleration.x -= dAcc;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+		acceleration.y += dAcc;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+		acceleration.x += dAcc;
 
-    // apply damping to the velocity
-    velocity_ = 0.99f * velocity_;
+	velocity_ += acceleration;
 
-    ship_sprite.move(x, y);
+	// update position through velocity
+	x += velocity_.x;
+	y += velocity_.y;
+
+	// apply damping to the velocity
+	velocity_ = 0.99f * velocity_;
+
+
+	if (check_boundaries()) {
+		ship_sprite.setPosition(520, 490);
+	}
+	else
+	{
+		ship_sprite.move(x, y);
+	}
+
 }
 
 void Ship::shoot(sf::RenderWindow& windowRef) {
 
-    ammo* b;
-    //If space is pressed then the ship shoots a bullet
+	ammo* b;
+	//If space is pressed then the ship shoots a bullet
+	sf::Time dt;
+	sf::Clock clk;
+	dt = clk.restart();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+		//Dinamically instantiate a new ammo object for each bullet
+		b = new ammo();
+		b->set_ammo_origin(get_ship_position());
 
-   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
-        //Dinamically instantiate a new ammo object for each bullet
-        b = new ammo();
-        b->set_ammo_origin(get_ship_position());
+		bullet.push_back(b);
 
-        bullet.push_back(b);
+	}
 
-    }
-    ammo_movement(windowRef);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)) {
-        bullet.clear();
-        bullet.shrink_to_fit();
-    }
+
+	ammo_movement(windowRef);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)) {
+		bullet.clear();
+		bullet.shrink_to_fit();
+	}
 }
