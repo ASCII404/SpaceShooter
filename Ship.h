@@ -29,7 +29,7 @@ public:
 	sf::Vector2f get_ship_position() { return ship_sprite.getPosition(); }
 
 	void ship_movement();
-	void shoot(sf::RenderWindow &windowRef);
+	void shoot(sf::RenderWindow& windowRef);
 	~Ship(){}
 };
 

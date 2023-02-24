@@ -48,12 +48,12 @@ void Ship::ship_movement(){
     ship_sprite.move(x, y);
 }
 
-void Ship::shoot(sf::RenderWindow &windowRef) {
+void Ship::shoot(sf::RenderWindow& windowRef) {
 
     ammo* b;
     //If space is pressed then the ship shoots a bullet
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
         //Dinamically instantiate a new ammo object for each bullet
         b = new ammo();
         b->set_ammo_origin(get_ship_position());

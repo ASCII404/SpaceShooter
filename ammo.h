@@ -31,8 +31,9 @@ public:
 	}
 	sf::Vector2f get_ammo_origin() { return ammo_sprite.getOrigin(); }
 
+	float Lerp(float x, float y, float z);
 protected:
 	std::vector<ammo*> bullet;
-	void ammo_movement(sf::RenderWindow &windowRef);
+	void ammo_movement(sf::RenderWindow& windowRef);
 };
 

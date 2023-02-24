@@ -1,11 +1,11 @@
 #include <SFML/Graphics.hpp>
 #include "Ship.h"
 #include "ammo.h"
+#include <iostream>
 
 //IMPLEMENT DELAY BETWEEN BULLETS -> CLOCK,DELTA TIME
 //IMPLEMENT LIMITS
 //IMPLEMENT AUTO DESTROY FOR BULLETS TO FREE MEMORY
-//IMPLEMENT BULLET SPEED > SHIP SPEED So they do not touch 
 //+try to code better
 
 int main()
@@ -22,7 +22,6 @@ int main()
    
     window.create(sf::VideoMode(1280, 720), "SpaceShooter");
     window.setFramerateLimit(140);
-    
 
     while (window.isOpen())
     {
@@ -36,6 +35,7 @@ int main()
         
 
         window.clear();
+        window.setKeyRepeatEnabled(false);
         window.draw(sprite_bg);
         window.draw(s.get_ship_sprite());
         s.ship_movement();
