@@ -1,14 +1,17 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <memory>
-class Ship
+#include <vector>
+#include <memory>
+#include "ammo.h"
+
+class Ship:ammo
 {
 private:
 	sf::Texture ship_texture;
 	sf::Sprite ship_sprite;
-
+	
 public:
-	sf::Text error_msg;
 
 	Ship() {
 		if (!ship_texture.loadFromFile("sh.png")) {}
@@ -26,7 +29,7 @@ public:
 	sf::Vector2f get_ship_position() { return ship_sprite.getPosition(); }
 
 	void ship_movement();
-	void shoot();
+	void shoot(sf::RenderWindow &windowRef);
 	~Ship(){}
 };
 

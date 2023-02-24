@@ -5,6 +5,7 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
+#include <iostream>
 
 template <typename T>
 bool operator <(const sf::Vector2<T>& left, const sf::Vector2<T>& right)
@@ -47,17 +48,22 @@ void Ship::ship_movement(){
     ship_sprite.move(x, y);
 }
 
-void Ship::shoot() {
+void Ship::shoot(sf::RenderWindow &windowRef) {
 
+    ammo* b;
     //If space is pressed then the ship shoots a bullet
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
-
         //Dinamically instantiate a new ammo object for each bullet
-        std::unique_ptr<ammo> bullet(new ammo);
+        b = new ammo();
+        b->set_ammo_origin(get_ship_position());
 
-        //A vector to store all the bullets before deleting them
-        std::vector<std::unique_ptr<ammo>> b;
-        b.push_back(std::move(bullet));
+        bullet.push_back(b);
+
     }
-
+    ammo_movement(windowRef);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)) {
+        bullet.clear();
+        bullet.shrink_to_fit();
+    }
 }
