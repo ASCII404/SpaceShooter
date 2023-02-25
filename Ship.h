@@ -5,7 +5,7 @@
 #include <memory>
 #include "ammo.h"
 
-class Ship:ammo
+class Ship: public ammo
 {
 private:
 	sf::Texture ship_texture;

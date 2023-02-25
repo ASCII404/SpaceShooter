@@ -3,9 +3,9 @@
 #include "ammo.h"
 #include <iostream>
 
-//IMPLEMENT DELAY BETWEEN BULLETS -> CLOCK,DELTA TIME (Idk, I wanna kms)
 //IMPLEMENT LIMITS (kind of did but I have to work on it)
-//IMPLEMENT AUTO DESTROY FOR BULLETS TO FREE MEMORY
+//IMPLEMENT AUTO DESTROY FOR BULLETS TO FREE MEMORY (maybe some unique_ptr)
+//DOCUMENT YOUR CODE
 
 int main()
 {
@@ -30,15 +30,20 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 
+			if (event.type == event.KeyPressed) {
+				if (event.key.code == sf::Keyboard::Key::Space) {
+					s.shoot(window);
+				}
+			}
+
 		}
 
-
 		window.clear();
-		window.setKeyRepeatEnabled(false);
+		window.setKeyRepeatEnabled(true);
 		window.draw(sprite_bg);
 		window.draw(s.get_ship_sprite());
 		s.ship_movement();
-		s.shoot(window);
+		s.ammo_movement(window);
 		window.display();
 	}
 	return 0;

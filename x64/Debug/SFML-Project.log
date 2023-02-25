@@ -1,4 +1,5 @@
-﻿  ammo.cpp
+﻿  Ship.cpp
+  ammo.cpp
   main.cpp
   Generating Code...
   SFML-Project.vcxproj -> S:\VS_Projects\C++\SFML\SFML-Project\x64\Debug\SFML-Project.exe

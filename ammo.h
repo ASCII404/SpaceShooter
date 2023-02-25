@@ -17,7 +17,7 @@ public:
 			ammo_sprite.setTexture(ammo_texture);
 		}
 	}
-
+	void ammo_movement(sf::RenderWindow& windowRef);
 	void set_ammo_sprite(sf::Texture texture) { ammo_sprite.setTexture(texture); }
 	sf::Sprite get_ammo_sprite() { return ammo_sprite; }
 
@@ -34,6 +34,6 @@ public:
 
 protected:
 	std::vector<ammo*> bullet;
-	void ammo_movement(sf::RenderWindow& windowRef);
+
 };
 
