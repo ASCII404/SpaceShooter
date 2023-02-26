@@ -1,5 +1,9 @@
-﻿  Ship.cpp
-  ammo.cpp
-  main.cpp
-  Generating Code...
+﻿  Enemy.cpp
+S:\VS_Projects\C++\SFML\SFML-Project\Enemy.h(22,14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+S:\VS_Projects\C++\SFML\SFML-Project\Enemy.h(26,48): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+S:\VS_Projects\C++\SFML\SFML-Project\Enemy.cpp(21,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   SFML-Project.vcxproj -> S:\VS_Projects\C++\SFML\SFML-Project\x64\Debug\SFML-Project.exe

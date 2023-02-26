@@ -4,8 +4,9 @@
 #include <vector>
 #include <memory>
 #include "ammo.h"
+#include "Enemy.h"
 
-class Ship: public ammo
+class Ship : public ammo, public Enemy
 {
 private:
 	sf::Texture ship_texture;

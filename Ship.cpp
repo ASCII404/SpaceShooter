@@ -22,7 +22,7 @@ bool operator >(const sf::Vector2<T>& left, const sf::Vector2<T>& right)
 
 bool Ship::check_boundaries() {
 
-	//std::cout << get_ship_position().x << " " << get_ship_position().y << std::endl;
+	std::cout << get_ship_position().x << " " << get_ship_position().y << std::endl;
 	if (ship_sprite.getPosition().x < -55.f) return true;
 	if (ship_sprite.getPosition().x > 1080.f) return true;
 	if (ship_sprite.getPosition().y < -42.f) return true;

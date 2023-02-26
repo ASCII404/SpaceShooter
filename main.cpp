@@ -1,20 +1,23 @@
 #include <SFML/Graphics.hpp>
 #include "Ship.h"
 #include "ammo.h"
+#include "Enemy.h"
 #include <iostream>
-
+#include <cstdlib>
+#include <ctime>
 //IMPLEMENT LIMITS (kind of did but I have to work on it)
 //IMPLEMENT AUTO DESTROY FOR BULLETS TO FREE MEMORY (maybe some unique_ptr)
 //DOCUMENT YOUR CODE
+//SOLVE ENEMY
 
 int main()
 {
 	Ship s;
 	ammo a;
+	Enemy e;
 
 	sf::Texture texture_bg;
 	sf::Sprite sprite_bg;
-
 	texture_bg.loadFromFile("bg2.jpg");
 	sprite_bg.setTexture(texture_bg);
 	sf::RenderWindow window;
@@ -44,6 +47,7 @@ int main()
 		window.draw(s.get_ship_sprite());
 		s.ship_movement();
 		s.ammo_movement(window);
+		window.draw(e.get_enemy_sprite());
 		window.display();
 	}
 	return 0;
