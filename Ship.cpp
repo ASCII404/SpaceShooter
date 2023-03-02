@@ -23,12 +23,12 @@ bool operator >(const sf::Vector2<T>& left, const sf::Vector2<T>& right)
 bool Ship::check_boundaries() {
 
 	std::cout << get_ship_position().x << " " << get_ship_position().y << std::endl;
-	if (ship_sprite.getPosition().x < -55.f) return true;
-	if (ship_sprite.getPosition().x > 1080.f) return true;
-	if (ship_sprite.getPosition().y < -42.f) return true;
-	if (ship_sprite.getPosition().y > 513.f) return true;
+	if (ship_sprite.getPosition().x < -55.f) return false; //left
+	if (ship_sprite.getPosition().x > 1080.f) return false; //right
+	if (ship_sprite.getPosition().y < -42.f) return false; //down
+	if (ship_sprite.getPosition().y > 513.f) return false; //up
 	
-	return false;
+	return true;
 }	
 
 void Ship::ship_movement() {
@@ -36,7 +36,6 @@ void Ship::ship_movement() {
 	sf::Vector2f acceleration{}, velocity_{};
 	float x{}, y{};
 	const float dAcc = 4.5f;
-	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::X))
 		ship_sprite.setPosition(520, 490);
 	// set acceleration
@@ -50,16 +49,17 @@ void Ship::ship_movement() {
 		acceleration.x += dAcc;
 
 	velocity_ += acceleration;
-
 	// update position through velocity
 	x += velocity_.x;
 	y += velocity_.y;
+
+
 
 	// apply damping to the velocity
 	velocity_ = 0.99f * velocity_;
 
 
-	if (check_boundaries()) {
+	if (!check_boundaries()) {
 		ship_sprite.setPosition(520, 490);
 	}
 	else
@@ -78,8 +78,5 @@ void Ship::shoot(sf::RenderWindow& windowRef) {
 	b->set_ammo_origin(get_ship_position());
 	bullet.push_back(b);
 	ammo_movement(windowRef);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)) {
-		bullet.clear();
-		bullet.shrink_to_fit();
-	}
+
 }

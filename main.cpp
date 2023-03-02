@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <ctime>
 //IMPLEMENT LIMITS (kind of did but I have to work on it)
-//IMPLEMENT AUTO DESTROY FOR BULLETS TO FREE MEMORY (maybe some unique_ptr)
+//IMPLEMENT AUTO DESTROY FOR BULLETS TO FREE MEMORY //Working on it
 //DOCUMENT YOUR CODE
 //SOLVE ENEMY
 

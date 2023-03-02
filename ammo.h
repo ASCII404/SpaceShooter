@@ -31,6 +31,7 @@ public:
 	}
 	sf::Vector2f get_ammo_origin() { return ammo_sprite.getOrigin(); }
 	float Lerp(float x, float y, float z);
+
 protected:
 	std::vector<ammo*> bullet;
 
