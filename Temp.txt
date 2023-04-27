@@ -1,0 +1,28 @@
+
+	top_b.top = 0;
+	top_b.left = 0;
+	top_b.height = 10;
+	top_b.width = 1280;
+
+
+	left_b.top = 0;
+	left_b.left = 0;
+	left_b.height = 800;
+	left_b.width = 10;
+
+
+	bot_b.top = 470;
+	bot_b.left = 1280;
+	bot_b.height = 10;
+	bot_b.width = -1290;
+
+
+	right_b.top = 720;
+	right_b.left = 1100;
+	right_b.height = -800;
+	right_b.width = -10;
+
+	sf::FloatRect top_b(0, 0, 1280, 5);
+sf::FloatRect left_b(0, 0, 10, 800);
+sf::FloatRect right_b(1100, 500, 10, -1290);
+sf::FloatRect bot_b(9, 460,1290, -10);
